@@ -1,0 +1,63 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #11111f;
+    color: #00d4ff;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container { text-align: center; padding: 2rem; }
+
+.logo-section { margin-bottom: 3rem; }
+
+.logo { max-width: 600px; width: 100%; height: auto; margin-bottom: 1.5rem; }
+
+.coming-soon {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    font-weight: 200;
+}
+
+.business-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    font-size: 1rem;
+    letter-spacing: 0.05em;
+}
+
+.business-link {
+    color: inherit;
+    text-decoration: none;
+    font-weight: 200;
+}
+
+.business-link:hover { text-decoration: underline; }
+
+.site-footer { margin-top: 4rem; }
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    background-color: #00d4ff;
+    margin-bottom: 1.5rem;
+    opacity: 0.3;
+}
+
+.footer-address {
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    font-weight: 200;
+    line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+    .logo { max-width: 400px; }
+    .business-links { flex-direction: column; gap: 1.5rem; }
+}
