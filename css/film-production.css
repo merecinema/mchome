@@ -257,6 +257,35 @@ section {
     object-fit: cover;
 }
 
+/* YouTube 배경 비디오 스타일 */
+.film-video-background.youtube-background {
+    overflow: hidden;
+}
+
+.film-youtube-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%) scale(1.2);
+    pointer-events: none;
+    border: none;
+    z-index: 0;
+}
+
+/* 모바일 대응 */
+@media (max-width: 768px) {
+    .film-youtube-video {
+        width: 177.77777778vh;
+        height: 100vh;
+        min-width: 100vw;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
 .film-container {
     max-width: var(--container-max-width);
     width: 100%;
