@@ -157,20 +157,27 @@ section {
     padding: 0 var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .hero-title {
-    font-size: clamp(3rem, 5vw, 8rem);
+    font-size: clamp(2rem, 5vw, 8rem);
     font-weight: var(--font-weight-thin);
     letter-spacing: -0.03em;
     line-height: 1;
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
     opacity: 0;
     animation: fadeInUp var(--transition-slow) 0.3s forwards;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
 }
 
 .title-line {
     display: block;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .hero-description {
@@ -190,7 +197,7 @@ section {
 }
 
 .hero-description p:first-child {
-    white-space: nowrap;
+    white-space: normal;
 }
 
 .hero-scroll {
@@ -555,6 +562,25 @@ section {
         --section-padding-x: 1.5rem;
     }
     
+    .hero-content {
+        padding: 0 var(--spacing-md);
+    }
+    
+    .hero-title {
+        word-break: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+    
+    .hero-description {
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .hero-description p {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+    
     .contact-info {
         grid-template-columns: 1fr;
         gap: var(--spacing-xl);
@@ -589,19 +615,28 @@ section {
         --section-padding-x: 1.5rem;
     }
     
-    .hero-title {
-        font-size: clamp(2.5rem, 5vw, 3.5rem);
-        margin-bottom: clamp(1.5rem, 5vw, 2rem);
+    .hero-content {
+        padding: 0 var(--spacing-sm);
     }
     
-    .hero-description p {
-        font-size: clamp(0.75rem, 3.5vw, 1rem);
-        line-height: 1.7;
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: clamp(1.5rem, 5vw, 2rem);
+        line-height: 1.1;
+        word-break: break-word;
     }
     
     .hero-description {
         max-width: 100%;
         margin-bottom: clamp(1.5rem, 5vw, 2.5rem);
+        padding: 0 var(--spacing-xs);
+    }
+    
+    .hero-description p {
+        font-size: clamp(0.75rem, 3.5vw, 1rem);
+        line-height: 1.7;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
     
     .site-footer {
