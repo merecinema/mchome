@@ -562,6 +562,18 @@ section {
         --section-padding-x: 1.5rem;
     }
     
+    /* Hide navbar logo when hero section is visible (top of page) */
+    .navbar:not(.scrolled) .nav-logo {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-fast), visibility var(--transition-fast);
+    }
+    
+    .navbar.scrolled .nav-logo {
+        opacity: 1;
+        visibility: visible;
+    }
+    
     .hero-content {
         padding: 0 var(--spacing-md);
     }
