@@ -2,15 +2,33 @@
 
 body {
     background-color: #11111f;
-    color: #00d4ff;
+    color: #ffffff;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.container { text-align: center; padding: 2rem; }
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    padding: 2rem;
+}
 
 .logo-section { margin-bottom: 3rem; }
 
@@ -45,7 +63,7 @@ body {
 .footer-divider {
     width: 100%;
     height: 1px;
-    background-color: #00d4ff;
+    background-color: #ffffff;
     margin-bottom: 1.5rem;
     opacity: 0.3;
 }
