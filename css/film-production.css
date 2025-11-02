@@ -461,7 +461,7 @@ section {
     max-width: var(--container-max-width);
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
 }
 
@@ -470,24 +470,7 @@ section {
     color: var(--color-white-80);
     font-weight: var(--font-weight-light);
     letter-spacing: 0.05em;
-}
-
-.footer-links {
-    display: flex;
-    gap: 2.5rem;
-}
-
-.footer-links a {
-    color: var(--color-white-80);
-    text-decoration: none;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    transition: color var(--transition-fast);
-    font-weight: var(--font-weight-light);
-}
-
-.footer-links a:hover {
-    color: var(--color-white);
+    text-align: center;
 }
 
 /* ==========================================================================
@@ -609,9 +592,7 @@ section {
     }
     
     .footer-container {
-        flex-direction: column;
-        gap: var(--spacing-md);
-        text-align: center;
+        justify-content: center;
     }
     
     .hero-scroll {
