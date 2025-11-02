@@ -162,7 +162,7 @@ section {
 }
 
 .hero-title {
-    font-size: clamp(2rem, 5vw, 8rem);
+    font-size: clamp(1.5rem, 5vw, 8rem);
     font-weight: var(--font-weight-thin);
     letter-spacing: -0.03em;
     line-height: 1;
@@ -632,7 +632,7 @@ section {
     }
     
     .hero-title {
-        font-size: clamp(2rem, 8vw, 3rem);
+        font-size: clamp(1.5rem, 8vw, 3rem);
         margin-bottom: clamp(1.5rem, 5vw, 2rem);
         line-height: 1.1;
         word-break: break-word;
