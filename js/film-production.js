@@ -50,7 +50,10 @@ window.addEventListener('scroll', () => {
                 const scale = 1 + (scrollTop / heroHeight) * 0.1;
                 
                 heroVideo.style.opacity = Math.max(0, opacity);
-                heroVideo.style.transform = `scale(${scale})`;
+                heroVideo.style.transform = `translate(-50%, -50%) scale(${scale})`;
+            } else if (heroVideo) {
+                // 스크롤 범위를 벗어나면 기본 상태로 복원
+                heroVideo.style.transform = 'translate(-50%, -50%)';
             }
             
             isScrolling = false;
