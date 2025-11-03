@@ -38,10 +38,6 @@
     --transition-normal: 1s ease;
     --transition-slow: 1.2s ease;
     
-    /* Breakpoints */
-    --breakpoint-tablet: 1024px;
-    --breakpoint-mobile: 768px;
-    --breakpoint-mobile-small: 480px;
 }
 
 /* Reset & Base */
@@ -137,8 +133,14 @@ section {
 }
 
 .hero-video {
-    width: 100%;
-    height: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
     object-fit: cover;
 }
 
@@ -157,8 +159,6 @@ section {
     padding: 0 var(--spacing-lg);
     max-width: 1200px;
     margin: 0 auto;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
 }
 
 .hero-title {
@@ -169,15 +169,13 @@ section {
     margin-bottom: clamp(2rem, 4vw, 3.5rem);
     opacity: 0;
     animation: fadeInUp var(--transition-slow) 0.3s forwards;
+    hyphens: auto;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
 }
 
 .title-line {
     display: block;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
 }
 
 .hero-description {
@@ -185,6 +183,8 @@ section {
     margin: 0 auto clamp(2rem, 5vw, 5rem);
     opacity: 0;
     animation: fadeInUp var(--transition-slow) 0.6s forwards;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .hero-description p {
@@ -196,9 +196,6 @@ section {
     margin-bottom: 0;
 }
 
-.hero-description p:first-child {
-    white-space: normal;
-}
 
 .hero-scroll {
     display: flex;
@@ -561,19 +558,8 @@ section {
         padding: 0 var(--spacing-md);
     }
     
-    .hero-title {
-        word-break: break-word;
-        overflow-wrap: break-word;
-        hyphens: auto;
-    }
-    
     .hero-description {
         padding: 0 var(--spacing-xs);
-    }
-    
-    .hero-description p {
-        word-wrap: break-word;
-        overflow-wrap: break-word;
     }
     
     .contact-info {
@@ -616,7 +602,6 @@ section {
         font-size: clamp(1.5rem, 8vw, 3rem);
         margin-bottom: clamp(1.5rem, 5vw, 2rem);
         line-height: 1.1;
-        word-break: break-word;
     }
     
     .hero-description {
@@ -628,8 +613,6 @@ section {
     .hero-description p {
         font-size: clamp(0.75rem, 3.5vw, 1rem);
         line-height: 1.7;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
     }
     
     .site-footer {
