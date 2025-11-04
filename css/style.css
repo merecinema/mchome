@@ -38,6 +38,30 @@ body {
 
 .logo { max-width: 600px; width: 100%; height: auto; margin-bottom: 1.5rem; }
 
+.sto-link {
+    display: inline-block;
+    position: relative;
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+}
+
+.sto-image {
+    display: block;
+    mask-image: 
+        linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image: 
+        linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%),
+        linear-gradient(to bottom, transparent 0%, black 5%, black 95%, transparent 100%);
+    -webkit-mask-composite: source-in;
+    transition: opacity 0.3s ease;
+}
+
+.sto-link:hover .sto-image {
+    opacity: 0.9;
+}
+
 .coming-soon {
     font-size: 1rem;
     letter-spacing: 0.1em;
