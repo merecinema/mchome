@@ -12,6 +12,41 @@ body {
     overflow: hidden;
 }
 
+/* Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: transparent;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    padding: 1.5rem 0;
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 1rem 0;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo img {
+    height: 35px;
+    width: auto;
+    transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover img {
+    opacity: 0.8;
+}
+
 .background-video {
     position: fixed;
     top: 50%;
@@ -66,7 +101,7 @@ body {
     font-size: 1rem;
     letter-spacing: 0.1em;
     font-weight: 200;
-    color: #00d4ff;
+    color: #ffffff;
 }
 
 .business-links {
