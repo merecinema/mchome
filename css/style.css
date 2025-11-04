@@ -37,13 +37,14 @@ body {
     align-items: center;
 }
 
-.nav-logo img {
-    height: 35px;
-    width: auto;
+.navbar .nav-logo img {
+    height: 35px !important;
+    width: auto !important;
+    max-width: none !important;
     transition: opacity 0.3s ease;
 }
 
-.nav-logo:hover img {
+.navbar .nav-logo:hover img {
     opacity: 0.8;
 }
 
