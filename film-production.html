@@ -20,7 +20,7 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-background">
-            <video autoplay loop muted playsinline class="hero-video">
+            <video autoplay loop muted playsinline webkit-playsinline preload="auto" class="hero-video">
                 <source src="videos/Nature_Water_2K.mp4" type="video/mp4">
             </video>
             <div class="hero-overlay"></div>
@@ -340,5 +340,14 @@
     </footer>
 
     <script src="js/film-production.js"></script>
+    <script>
+        // 모바일 브라우저에서 autoplay 실패 시 재생 시도
+        const heroVideo = document.querySelector('.hero-video');
+        if (heroVideo) {
+            const playVideo = () => heroVideo.play().catch(() => {});
+            document.addEventListener('touchstart', playVideo, { once: true });
+            document.addEventListener('click', playVideo, { once: true });
+        }
+    </script>
 </body>
 </html>
