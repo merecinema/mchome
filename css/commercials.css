@@ -1,0 +1,516 @@
+/* ==============================================
+   COMMERCIALS - MC Global Style
+   ============================================== */
+
+/* Reset & Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: #000;
+    color: #fff;
+    overflow-x: hidden;
+    line-height: 1.6;
+}
+
+/* ==============================================
+   Navigation
+   ============================================== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    padding: 0 2rem;
+}
+
+.navbar.scrolled {
+    background-color: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+.nav-logo img {
+    height: 35px;
+    width: auto;
+    transition: opacity 0.3s ease;
+}
+
+.nav-logo:hover img {
+    opacity: 0.8;
+}
+
+/* ==============================================
+   Hero Section
+   ============================================== */
+.hero {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2rem 6rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+}
+
+.hero-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.title-line {
+    display: block;
+}
+
+.hero-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.hero-description {
+    max-width: clamp(600px, 75vw, 900px);
+    margin: 0 auto 2rem;
+}
+
+.hero-description p {
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 300;
+    letter-spacing: 0;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 0;
+}
+
+.hero-credits {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.05em;
+}
+
+.hero-scroll {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero-scroll span {
+    font-size: 0.6875rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.scroll-indicator {
+    width: 1px;
+    height: 50px;
+    background-color: #fff;
+    animation: scrollDown 2s infinite;
+    opacity: 0.6;
+}
+
+@keyframes scrollDown {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.6;
+    }
+    50% {
+        transform: translateY(25px);
+        opacity: 0;
+    }
+}
+
+/* Video Background */
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+}
+
+/* Lazy Loading Video Placeholder */
+.video-background.lazy-video {
+    background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-background.lazy-video::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Ensure video covers the entire section */
+@media (min-aspect-ratio: 16/9) {
+    .hero-video {
+        height: 56.25vw;
+    }
+}
+
+@media (max-aspect-ratio: 16/9) {
+    .hero-video {
+        width: 177.78vh;
+    }
+}
+
+/* ==============================================
+   Commercial Sections
+   ============================================== */
+.commercial-section {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0 2rem 6rem;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.commercial-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+}
+
+.commercial-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    width: 100%;
+}
+
+.commercial-title {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+}
+
+.commercial-subtitle {
+    font-size: 0.875rem;
+    font-weight: 400;
+    margin-bottom: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.commercial-credits {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.05em;
+}
+
+/* ==============================================
+   Coming Soon Section
+   ============================================== */
+.coming-soon-section {
+    min-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+}
+
+.coming-soon {
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 200;
+    letter-spacing: 0.1em;
+    color: #ffffff;
+    text-align: center;
+}
+
+/* ==============================================
+   Contact Section
+   ============================================== */
+.contact-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+    padding: 6rem 2rem 4rem;
+}
+
+.contact-container {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.contact-title {
+    font-size: clamp(3rem, 6vw, 8rem);
+    font-weight: 200;
+    letter-spacing: -0.03em;
+    margin-bottom: 8rem;
+    color: #fff;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 1s ease;
+}
+
+.contact-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.contact-item {
+    text-align: left;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.contact-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.contact-item:nth-child(1) { transition-delay: 0.1s; }
+.contact-item:nth-child(2) { transition-delay: 0.2s; }
+.contact-item:nth-child(3) { transition-delay: 0.3s; }
+
+.contact-item h3 {
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-item p {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    line-height: 1.8;
+    color: #fff;
+    font-weight: 300;
+}
+
+/* ==============================================
+   Footer
+   ============================================== */
+.site-footer {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    background-color: #000;
+    position: relative;
+    z-index: 10;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-container p {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-align: center;
+}
+
+/* ==============================================
+   Scrollbar
+   ============================================== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ==============================================
+   Responsive Design
+   ============================================== */
+@media (max-width: 1024px) {
+    .contact-info {
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0 1rem;
+    }
+
+    .hero,
+    .commercial-section {
+        padding: 0 1rem 4rem;
+    }
+
+    .hero-title,
+    .commercial-title {
+        font-size: clamp(1.5rem, 6vw, 2.5rem);
+    }
+
+    .hero-subtitle,
+    .commercial-subtitle {
+        font-size: 0.75rem;
+    }
+
+    .hero-scroll {
+        position: relative;
+        bottom: auto;
+        margin-top: 2rem;
+    }
+
+    .contact-title {
+        font-size: clamp(2rem, 8vw, 3rem);
+        margin-bottom: 6rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .contact-section {
+        padding: 4rem 2rem 3rem;
+    }
+
+    /* Hide navbar logo when hero section is visible (top of page) */
+    .navbar:not(.scrolled) .nav-logo {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .navbar.scrolled .nav-logo {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero,
+    .commercial-section {
+        padding: 0 1rem 3rem;
+    }
+
+    .hero-title,
+    .commercial-title {
+        font-size: clamp(1.25rem, 5vw, 2rem);
+        line-height: 1.2;
+    }
+
+    .hero-description p {
+        font-size: 0.875rem;
+    }
+
+    .site-footer {
+        padding: 1.5rem 1rem;
+    }
+}
