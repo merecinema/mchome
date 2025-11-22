@@ -69,7 +69,5 @@ if (heroVideo) {
     });
     
     // Ensure video plays
-    heroVideo.play().catch(e => {
-        console.log('Video autoplay prevented:', e);
-    });
+    heroVideo.play().catch(() => {});
 }

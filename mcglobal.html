@@ -468,9 +468,7 @@
                                         if (time >= 90) {
                                             samsungPlayer.seekTo(73, true);
                                         }
-                                    } catch(e) {
-                                        console.log('Video time check error:', e);
-                                    }
+                                    } catch(e) {}
                                 }, 500);
                             },
                             'onStateChange': function(event) {
@@ -481,9 +479,7 @@
                             }
                         }
                     });
-                } catch(e) {
-                    console.log('Samsung player init error:', e);
-                }
+                } catch(e) {}
             }, 1000);
         }
 
