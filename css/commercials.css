@@ -315,12 +315,6 @@ nav.scrolled {
     margin-bottom: 8rem;
     color: #fff;
     text-align: center;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 1s ease;
-}
-
-.contact-title.visible {
     opacity: 1;
     transform: translateY(0);
 }
