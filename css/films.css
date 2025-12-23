@@ -397,6 +397,18 @@ section {
     margin-left: 0;
 }
 
+.film-awards {
+    font-size: clamp(0.75rem, 1.3vw, 0.95rem);
+    line-height: 1.6;
+    color: var(--color-white-80);
+    font-weight: var(--font-weight-light);
+    max-width: 600px;
+    letter-spacing: 0;
+    text-align: left;
+    margin-left: 0;
+    margin-top: var(--spacing-sm);
+}
+
 /* ==========================================================================
    Contact Section
    ========================================================================== */
