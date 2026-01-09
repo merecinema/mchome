@@ -93,7 +93,7 @@ nav.scrolled {
     height: 50px;
     width: auto;
     transition: opacity 0.3s ease;
-    margin-left: 0.5rem;
+    margin-left: 0.75rem;
 }
 
 .keystone-logo:hover {
