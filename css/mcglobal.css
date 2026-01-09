@@ -80,6 +80,26 @@ nav.scrolled {
     opacity: 0.8;
 }
 
+.logo-separator {
+    margin: 0 0.75rem;
+    cursor: default;
+}
+
+.logo-separator:hover {
+    opacity: 1;
+}
+
+.keystone-logo {
+    height: 50px;
+    width: auto;
+    transition: opacity 0.3s ease;
+    margin-left: 0.5rem;
+}
+
+.keystone-logo:hover {
+    opacity: 0.8;
+}
+
 .logo a:hover .logo-image {
     opacity: 0.8;
 }
