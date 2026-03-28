@@ -80,25 +80,6 @@ nav.scrolled {
     opacity: 0.8;
 }
 
-.logo-separator {
-    margin: 0 0.75rem;
-    cursor: default;
-}
-
-.logo-separator:hover {
-    opacity: 1;
-}
-
-.keystone-logo {
-    height: 50px;
-    width: auto;
-    transition: opacity 0.3s ease;
-    margin-left: 0.2rem;
-}
-
-.keystone-logo:hover {
-    opacity: 0.8;
-}
 
 .logo a:hover .logo-image {
     opacity: 0.8;
@@ -134,9 +115,6 @@ nav.scrolled {
     color: #999;
 }
 
-.nav-menu a.active {
-    color: #999;
-}
 
 .mobile-menu-button {
     display: none;
@@ -203,9 +181,6 @@ nav.scrolled {
     white-space: nowrap;
 }
 
-.title-line {
-    display: block;
-}
 
 .hero-subtitle {
     font-size: 0.875rem;
@@ -214,19 +189,6 @@ nav.scrolled {
     color: rgba(255, 255, 255, 0.9);
 }
 
-.hero-description {
-    max-width: clamp(600px, 75vw, 900px);
-    margin: 0 auto 2rem;
-}
-
-.hero-description p {
-    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
-    font-weight: 300;
-    letter-spacing: 0;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 0;
-}
 
 .hero-credits {
     font-size: 0.875rem;
@@ -297,18 +259,6 @@ nav.scrolled {
     to { transform: rotate(360deg); }
 }
 
-/* Ensure video covers the entire section */
-@media (min-aspect-ratio: 16/9) {
-    .hero-video {
-        height: 56.25vw;
-    }
-}
-
-@media (max-aspect-ratio: 16/9) {
-    .hero-video {
-        width: 177.78vh;
-    }
-}
 
 
 /* ==============================================
