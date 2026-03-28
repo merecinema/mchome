@@ -350,6 +350,16 @@ nav.scrolled {
     text-align: left;
 }
 
+.contact-item--wide {
+    grid-column: span 2;
+}
+
+.contact-people {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
 .contact-label {
     font-size: 0.875rem;
     font-weight: 700;
@@ -456,6 +466,14 @@ nav.scrolled {
     .contact-grid {
         grid-template-columns: 1fr;
         gap: 3rem;
+    }
+
+    .contact-item--wide {
+        grid-column: span 1;
+    }
+
+    .contact-people {
+        grid-template-columns: 1fr;
     }
 
     .contact-section {
