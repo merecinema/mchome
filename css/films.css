@@ -416,6 +416,12 @@ section {
 .contact-section {
     background-color: var(--color-black);
     scroll-margin-top: 80px;
+    height: auto;
+    min-height: 100vh;
+    overflow: visible;
+    align-items: flex-start;
+    padding-top: 6rem;
+    padding-bottom: 4rem;
 }
 
 .contact-container {
@@ -485,10 +491,7 @@ section {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    padding: 0 var(--container-padding) 5rem;
-    max-width: var(--container-max-width);
-    margin: 0 auto;
-    background-color: var(--color-black);
+    margin-top: 4rem;
 }
 
 .office-grid {
