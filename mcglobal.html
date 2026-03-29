@@ -312,8 +312,8 @@
     </section>
 
     <!-- Hero Section 27 with Video Background -->
-    <section class="hero-section shorts-section">
-        <div class="video-background lazy-video" data-youtube-id="mYR1jXC_Qc8"></div>
+    <section class="hero-section">
+        <div class="video-background lazy-video" data-vimeo-id="1027727265"></div>
         <div class="hero-content">
             <h1 class="hero-title">RALPH LAUREN -<br> Polo EST.67</h1>
             <p class="hero-subtitle">Directed by Fabien CONSTANT</p>
@@ -451,7 +451,7 @@
             const isWithSamsungSection = element.id === 'samsung-section';
             const start = element.dataset.start || '';
             const startParam = start ? `&start=${start}` : '';
-            
+
             const iframe = document.createElement('iframe');
             iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1${isWithSamsungSection ? '&enablejsapi=1' : ''}${startParam}`;
             iframe.frameBorder = '0';
@@ -460,7 +460,7 @@
             if (isWithSamsungSection) {
                 iframe.id = 'samsung-video';
             }
-            
+
             element.innerHTML = '';
             element.appendChild(iframe);
             element.classList.remove('lazy-video');
@@ -471,11 +471,31 @@
             }
         }
 
+        function loadVimeoVideo(element) {
+            const videoId = element.dataset.vimeoId;
+            if (loadedVideos.has('vimeo-' + videoId)) return;
+            loadedVideos.add('vimeo-' + videoId);
+
+            const iframe = document.createElement('iframe');
+            iframe.src = `https://player.vimeo.com/video/${videoId}?autoplay=1&muted=1&loop=1&background=1&quality=auto`;
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay; fullscreen; picture-in-picture';
+            iframe.allowFullscreen = true;
+
+            element.innerHTML = '';
+            element.appendChild(iframe);
+            element.classList.remove('lazy-video');
+        }
+
         // Intersection Observer for lazy loading
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    loadYouTubeVideo(entry.target);
+                    if (entry.target.dataset.vimeoId) {
+                        loadVimeoVideo(entry.target);
+                    } else {
+                        loadYouTubeVideo(entry.target);
+                    }
                     videoObserver.unobserve(entry.target);
                 }
             });
