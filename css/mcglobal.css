@@ -311,19 +311,19 @@ nav.scrolled {
 }
 
 .contact-label {
-    font-size: 0.875rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-size: 0.75rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
     margin-bottom: 1.5rem;
-    color: #fff;
+    color: rgba(255, 255, 255, 0.8);
     text-transform: uppercase;
 }
 
 .contact-text {
-    font-size: 1rem;
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(255, 255, 255, 0.8);
+    color: #fff;
 }
 
 .contact-footer {
@@ -340,7 +340,7 @@ nav.scrolled {
 
 
 .office-section {
-    margin-bottom: 5rem;
+    margin-top: 4rem;
 }
 
 /* ==============================================
