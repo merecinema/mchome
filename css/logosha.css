@@ -270,8 +270,14 @@ nav.scrolled {
     font-weight: 300;
     color: #fff;
     text-align: center;
-    line-height: 1.8;
+    line-height: 2;
     margin-bottom: 6rem;
+}
+
+.contact-name {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .contact-footer {
