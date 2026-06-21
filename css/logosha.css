@@ -1,5 +1,5 @@
 /* ==============================================
-   COMMERCIALS - MC Global Style
+   LogosHA Style
    ============================================== */
 
 /* Reset & Base Styles */
@@ -53,18 +53,6 @@ nav.scrolled {
     align-items: center;
 }
 
-.logo a {
-    display: inline-block;
-    line-height: 0;
-}
-
-.logo-image {
-    height: 25px;
-    width: auto;
-    transition: opacity 0.3s ease;
-    margin-right: 0.5rem;
-}
-
 .logo-text {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 1.5rem;
@@ -77,11 +65,6 @@ nav.scrolled {
 }
 
 .logo-text:hover {
-    opacity: 0.8;
-}
-
-
-.logo a:hover .logo-image {
     opacity: 0.8;
 }
 
@@ -114,7 +97,6 @@ nav.scrolled {
 .nav-menu a:hover {
     color: #999;
 }
-
 
 .mobile-menu-button {
     display: none;
@@ -181,14 +163,12 @@ nav.scrolled {
     white-space: nowrap;
 }
 
-
 .hero-subtitle {
     font-size: 0.875rem;
     font-weight: 400;
     margin-bottom: 1rem;
     color: rgba(255, 255, 255, 0.9);
 }
-
 
 .hero-credits {
     font-size: 0.875rem;
@@ -259,8 +239,6 @@ nav.scrolled {
     to { transform: rotate(360deg); }
 }
 
-
-
 /* ==============================================
    Contact Section
    ============================================== */
@@ -285,45 +263,6 @@ nav.scrolled {
     margin-bottom: 8rem;
     color: #fff;
     text-align: center;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4rem;
-    margin-bottom: 4rem;
-}
-
-.contact-item {
-    text-align: left;
-}
-
-.contact-item--wide {
-    grid-column: span 2;
-}
-
-.contact-people {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-}
-
-.contact-label {
-    font-size: 0.75rem;
-    font-weight: 400;
-    letter-spacing: 0.2em;
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.8);
-    text-transform: uppercase;
-}
-
-.contact-text {
-    font-size: clamp(1rem, 1.5vw, 1.125rem);
-    font-weight: 300;
-    line-height: 1.8;
-    color: #fff;
 }
 
 .contact-info {
@@ -345,11 +284,6 @@ nav.scrolled {
     font-size: 0.875rem;
     font-weight: 300;
     color: rgba(255, 255, 255, 0.5);
-}
-
-
-.office-section {
-    margin-top: 4rem;
 }
 
 /* ==============================================
@@ -380,10 +314,6 @@ nav.scrolled {
         white-space: normal;
         font-size: 0.65rem;
         margin: 0 1rem;
-    }
-
-    .contact-grid {
-        gap: 3rem;
     }
 }
 
@@ -426,19 +356,6 @@ nav.scrolled {
         margin-bottom: 6rem;
     }
 
-    .contact-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .contact-item--wide {
-        grid-column: span 1;
-    }
-
-    .contact-people {
-        grid-template-columns: 1fr;
-    }
-
     .contact-section {
         padding: 4rem 2rem 3rem;
     }
@@ -453,9 +370,4 @@ nav.scrolled {
         font-size: 1.5rem;
         line-height: 1.2;
     }
-
-    .hero-description p {
-        font-size: 0.875rem;
-    }
 }
-
