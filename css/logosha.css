@@ -326,6 +326,15 @@ nav.scrolled {
     color: #fff;
 }
 
+.contact-info {
+    font-size: clamp(0.875rem, 1.5vw, 1.125rem);
+    font-weight: 300;
+    color: #fff;
+    text-align: center;
+    line-height: 1.8;
+    margin-bottom: 6rem;
+}
+
 .contact-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
