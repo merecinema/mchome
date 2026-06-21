@@ -264,14 +264,12 @@ nav.scrolled {
     letter-spacing: -0.03em;
     margin-bottom: 8rem;
     color: #fff;
-    text-align: center;
 }
 
 .contact-info {
     font-size: clamp(0.875rem, 1.5vw, 1.125rem);
     font-weight: 300;
     color: #fff;
-    text-align: center;
     line-height: 2.2;
     margin-bottom: 10rem;
 }
@@ -285,7 +283,6 @@ nav.scrolled {
 .contact-footer {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     padding-top: 2rem;
-    text-align: center;
 }
 
 .copyright {

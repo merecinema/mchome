@@ -334,7 +334,7 @@
         <div class="hero-content">
             <h1 class="hero-title">SAMSUNG -<br> Bespoke AI Jet Ultra</h1>
             <p class="hero-subtitle">Directed by Hyunjin RAH</p>
-            <p class="hero-credits">SAMSUNG / Cheil Worldwide /<br> LOVEANDMONEY / ORBIS (Italy)</p>
+            <p class="hero-credits">SAMSUNG / Cheil Worldwide / LOVEANDMONEY / ORBIS (Italy)</p>
         </div>
     </section>
 
@@ -344,7 +344,7 @@
         <div class="hero-content">
             <h1 class="hero-title">SAMSUNG -<br> Bespoke AI Jet Ultra</h1>
             <p class="hero-subtitle">Directed by Hyunjin RAH</p>
-            <p class="hero-credits">SAMSUNG / Cheil Worldwide /<br> LOVEANDMONEY / Keystone films (Romania)</p>
+            <p class="hero-credits">SAMSUNG / Cheil Worldwide / LOVEANDMONEY / Keystone films (Romania)</p>
         </div>
     </section>
 
@@ -354,7 +354,7 @@
         <div class="hero-content">
             <h1 class="hero-title">SAMSUNG -<br> Ultra Unfolds</h1>
             <p class="hero-subtitle">Directed by Hyunjin RAH</p>
-            <p class="hero-credits">SAMSUNG / Cheil Worldwide /<br> LOVEANDMONEY / CENTRAL films (Dubai)</p>
+            <p class="hero-credits">SAMSUNG / Cheil Worldwide / LOVEANDMONEY / CENTRAL films (Dubai)</p>
         </div>
     </section>
 
@@ -364,7 +364,7 @@
         <div class="hero-content">
             <h1 class="hero-title">SAMSUNG -<br> Ultra Unfolds</h1>
             <p class="hero-subtitle">Directed by Hyunjin RAH</p>
-            <p class="hero-credits">SAMSUNG / Cheil Worldwide /<br> LOVEANDMONEY / CENTRAL films (Dubai)</p>
+            <p class="hero-credits">SAMSUNG / Cheil Worldwide / LOVEANDMONEY / CENTRAL films (Dubai)</p>
         </div>
     </section>
 
@@ -374,7 +374,7 @@
         <div class="hero-content">
             <h1 class="hero-title">SAMSUNG -<br> Ultra Unfolds</h1>
             <p class="hero-subtitle">Directed by Hyunjin RAH</p>
-            <p class="hero-credits">SAMSUNG / Cheil Worldwide /<br> LOVEANDMONEY / CENTRAL films (Dubai)</p>
+            <p class="hero-credits">SAMSUNG / Cheil Worldwide / LOVEANDMONEY / CENTRAL films (Dubai)</p>
         </div>
     </section>
 
@@ -465,9 +465,9 @@
         lazyVideos.forEach(video => videoObserver.observe(video));
 
         // YouTube IFrame API (used for Samsung Galaxy AI custom loop)
-        var tag = document.createElement('script');
+        const tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
-        document.getElementsByTagName('script')[0].parentNode.insertBefore(tag, document.getElementsByTagName('script')[0]);
+        document.head.appendChild(tag);
 
         function initSamsungPlayer() {
             if (samsungPlayer) return;
