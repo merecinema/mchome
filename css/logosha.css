@@ -254,6 +254,8 @@ nav.scrolled {
 .contact-container {
     max-width: 1400px;
     width: 100%;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .contact-title {
@@ -270,14 +272,14 @@ nav.scrolled {
     font-weight: 300;
     color: #fff;
     text-align: center;
-    line-height: 2;
-    margin-bottom: 6rem;
+    line-height: 2.2;
+    margin-bottom: 10rem;
 }
 
 .contact-name {
     font-size: clamp(1.75rem, 3vw, 2.25rem);
     font-weight: 600;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
 }
 
 .contact-footer {
