@@ -9,9 +9,30 @@
   <link rel="stylesheet" href="scenaverse/style.css">
 </head>
 <body>
+  <!-- 접근 게이트 (가벼운 접근 제한 — 정식 인증 아님) -->
+  <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
+    <form class="gate__box" id="gateForm" autocomplete="off">
+      <h1 class="gate__title" id="gateTitle">욕망의 칼</h1>
+      <p class="gate__desc">비밀번호를 입력해 주세요.</p>
+      <input
+        class="gate__input"
+        id="gateInput"
+        type="password"
+        inputmode="text"
+        autocapitalize="off"
+        autocorrect="off"
+        spellcheck="false"
+        aria-label="비밀번호"
+        placeholder="비밀번호"
+      />
+      <button type="submit" class="gate__btn">입장</button>
+      <p class="gate__error" id="gateError" role="alert" aria-live="assertive"></p>
+    </form>
+  </div>
+
   <header class="site-header">
     <h1 class="site-title">욕망의 칼</h1>
-    <p class="site-subtitle">가제 · 웹 리더 준비 중</p>
+    <p class="site-subtitle">각본 · 감독 Logos HA</p>
   </header>
 
   <main class="site-main">
@@ -37,6 +58,49 @@
   </button>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- 접근 게이트 로직 (세션 동안 유지) -->
+  <script>
+    (function () {
+      var GATE_PASS = "knifeofdesire";
+      var GATE_KEY = "kod_gate_ok";
+      var gate = document.getElementById("gate");
+      var form = document.getElementById("gateForm");
+      var input = document.getElementById("gateInput");
+      var errorEl = document.getElementById("gateError");
+
+      function pass() {
+        try { sessionStorage.setItem(GATE_KEY, "1"); } catch (e) {}
+        gate.classList.add("is-hidden");
+        document.body.classList.remove("is-gated");
+        window.setTimeout(function () {
+          if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+        }, 300);
+      }
+
+      var already = false;
+      try { already = sessionStorage.getItem(GATE_KEY) === "1"; } catch (e) {}
+
+      if (already) {
+        gate.classList.add("is-hidden");
+        if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
+      } else {
+        document.body.classList.add("is-gated");
+        input.focus();
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          if (input.value === GATE_PASS) {
+            errorEl.textContent = "";
+            pass();
+          } else {
+            errorEl.textContent = "비밀번호가 틀렸습니다.";
+            input.value = "";
+            input.focus();
+          }
+        });
+      }
+    })();
+  </script>
 
   <script src="scenaverse/content.js"></script>
   <script src="scenaverse/main.js"></script>

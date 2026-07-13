@@ -255,6 +255,86 @@ body {
 }
 
 /* ==========================================================================
+   접근 게이트 (가벼운 접근 제한)
+   ========================================================================== */
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background-color: var(--color-bg);
+  transition: opacity 0.28s ease;
+}
+.gate.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+/* 게이트 활성 동안 뒤 스크롤 잠금 */
+body.is-gated {
+  overflow: hidden;
+}
+
+.gate__box {
+  width: 100%;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+.gate__title {
+  font-size: 1.75rem;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+}
+.gate__desc {
+  margin-top: 0.6rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.gate__input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  font-family: inherit;
+  font-size: 1rem;
+  color: var(--color-text);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.6rem;
+  outline: none;
+  transition: border-color 0.18s ease;
+}
+.gate__input:focus {
+  border-color: var(--color-accent);
+}
+.gate__btn {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--color-accent);
+  border: 1px solid var(--color-accent);
+  border-radius: 0.6rem;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.12s ease;
+}
+.gate__btn:active {
+  transform: scale(0.97);
+}
+.gate__error {
+  min-height: 1.2em;
+  margin-top: 0.9rem;
+  font-size: 0.85rem;
+  color: var(--color-accent);
+}
+
+/* ==========================================================================
    토스트
    ========================================================================== */
 .toast {
