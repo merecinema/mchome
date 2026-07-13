@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="욕망의 칼 (가제) — 웹 리더">
+  <title>욕망의 칼 (가제)</title>
+  <link rel="stylesheet" href="shortseries/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1 class="site-title">욕망의 칼</h1>
+    <p class="site-subtitle">가제 · 웹 리더 준비 중</p>
+  </header>
+
+  <main class="site-main">
+    <section class="reader" id="reader" aria-live="polite">
+      <header class="reader__head">
+        <p class="reader__epno" id="epno"></p>
+        <h2 class="reader__eptitle" id="eptitle"></h2>
+      </header>
+
+      <div class="reader__body" id="episode"></div>
+
+      <div class="reader__sentinel" id="sentinel" aria-hidden="true"></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <small>&copy; 2026 MereCinema. All rights reserved.</small>
+  </footer>
+
+  <button type="button" class="next-fab is-locked" id="nextFab" aria-label="다음 화">
+    <span class="next-fab__icon" id="nextFabIcon">&#128274;</span>
+    <span class="next-fab__label" id="nextFabLabel">다음 화</span>
+  </button>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="shortseries/content.js"></script>
+  <script src="shortseries/main.js"></script>
+</body>
+</html>

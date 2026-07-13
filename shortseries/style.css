@@ -1,0 +1,296 @@
+/* ==========================================================================
+   욕망의 칼 (가제) — 기본 스타일 (모바일 퍼스트)
+   뼈대 세팅 단계: 리셋 + 리더 기본값(폰트/줄간격/색상 변수)만 최소 정의
+   ========================================================================== */
+
+/* --- 색상/타이포 변수 (고정 다크 테마 — 검은 배경 + 흰 글자) --- */
+:root {
+  --color-bg: #000000;
+  --color-surface: #1a1a1a;
+  --color-text: #ffffff;
+  --color-text-muted: #b3b3b3;
+  --color-accent: #e05a5a; /* 칼/욕망 — 절제된 레드 */
+  --color-border: #333333;
+
+  --font-body: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Noto Sans KR", "Malgun Gothic", sans-serif;
+
+  --reader-font-size: 1.0625rem; /* 17px — 본문 가독성 기준 */
+  --reader-line-height: 1.8;      /* 웹소설 리더 표준 줄간격 */
+  --reader-max-width: 42rem;      /* 한 줄 길이 제한 */
+}
+
+/* --- 리셋 (최소) --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+img,
+picture,
+video {
+  max-width: 100%;
+  display: block;
+}
+
+/* --- 기본 레이아웃 --- */
+body {
+  font-family: var(--font-body);
+  font-size: var(--reader-font-size);
+  line-height: var(--reader-line-height);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header,
+.site-main,
+.site-footer {
+  width: 100%;
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+}
+
+/* --- 헤더 --- */
+.site-header {
+  padding-top: 2.5rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.site-title {
+  font-size: 1.75rem;
+  letter-spacing: 0.02em;
+  color: var(--color-accent);
+}
+
+.site-subtitle {
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  color: var(--color-text-muted);
+}
+
+/* --- 본문 --- */
+.site-main {
+  flex: 1;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+.placeholder {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.placeholder__lead {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.placeholder__desc {
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+}
+
+/* --- 푸터 --- */
+.site-footer {
+  padding-top: 1.5rem;
+  padding-bottom: 2rem;
+  text-align: center;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border);
+}
+
+/* ==========================================================================
+   리더 영역 (헤더 아래) — 누리 스펙
+   ========================================================================== */
+
+.site-main {
+  /* 우하단 플로팅 버튼과 겹치지 않도록 하단 여유 */
+  padding-bottom: 6rem;
+}
+
+.reader__head {
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.reader__epno {
+  font-size: 0.8125rem;
+  letter-spacing: 0.08em;
+  color: var(--color-accent);
+}
+
+.reader__eptitle {
+  margin-top: 0.35rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-text);
+}
+
+/* --- 블록 공통 --- */
+.blk {
+  margin-bottom: 1.15rem;
+}
+
+/* 씬 헤딩: 작게·회색·자간 넓게·위아래 여백 크게 */
+.blk--scene {
+  margin-top: 2.75rem;
+  margin-bottom: 1.75rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  text-transform: none;
+}
+.blk--scene:first-child {
+  margin-top: 0;
+}
+
+/* 지문: 본문체, 줄간격 1.7 */
+.blk--action {
+  line-height: 1.7;
+  color: var(--color-text);
+}
+.blk--action em {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* 대사 블록 */
+.blk--dialogue {
+  margin-top: 1.35rem;
+  margin-bottom: 1.35rem;
+}
+
+/* 캐릭터명: 볼드, 왼쪽 정렬 */
+.dlg__name {
+  font-weight: 700;
+  text-align: left;
+  color: var(--color-text);
+}
+
+/* 지시어: 캐릭터명 아래 이탤릭·회색·작게, 괄호 유지 */
+.dlg__paren {
+  margin-top: 0.1rem;
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* 대사: 지문 대비 좌우 약 1em 들여쓰기 */
+.dlg__line {
+  margin-top: 0.35rem;
+  padding-inline: 1em;
+  line-height: 1.7;
+}
+
+/* 읽음 판정용 sentinel */
+.reader__sentinel {
+  height: 1px;
+  width: 100%;
+}
+
+/* ==========================================================================
+   다음 화 플로팅 버튼 (우하단 고정)
+   ========================================================================== */
+.next-fab {
+  position: fixed;
+  right: 1.1rem;
+  bottom: 1.4rem;
+  z-index: 30;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.7rem 1.1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    border-color 0.18s ease, transform 0.12s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.next-fab:active {
+  transform: scale(0.96);
+}
+
+/* 잠금: 회색 비활성 + 자물쇠 */
+.next-fab.is-locked {
+  background-color: var(--color-surface);
+  color: var(--color-text-muted);
+  border-color: var(--color-border);
+}
+
+/* 해제: 강조색 활성 */
+.next-fab.is-unlocked {
+  background-color: var(--color-accent);
+  color: #ffffff;
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 18px rgba(224, 90, 90, 0.35);
+}
+
+.next-fab__icon {
+  font-size: 0.95rem;
+  line-height: 1;
+}
+
+/* ==========================================================================
+   토스트
+   ========================================================================== */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: 5.5rem;
+  transform: translateX(-50%) translateY(0.5rem);
+  z-index: 40;
+  max-width: calc(100% - 2.5rem);
+  padding: 0.65rem 1.1rem;
+  background-color: rgba(40, 40, 40, 0.96);
+  color: #ffffff;
+  border: 1px solid var(--color-border);
+  border-radius: 0.6rem;
+  font-size: 0.9rem;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.toast.is-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* --- 태블릿 이상 --- */
+@media (min-width: 640px) {
+  :root {
+    --reader-font-size: 1.125rem; /* 18px */
+  }
+
+  .site-title {
+    font-size: 2rem;
+  }
+
+  .reader__eptitle {
+    font-size: 1.6rem;
+  }
+}
