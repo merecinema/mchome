@@ -374,3 +374,554 @@ body.is-gated {
     font-size: 1.6rem;
   }
 }
+
+/* ==========================================================================
+   상단 내비게이션 (3탭: 기획서 / 트리트먼트 / 시나리오) — 신규
+   전역 sticky, 다크 배경, 현재 뷰 탭을 accent 로 강조
+   ========================================================================== */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  background-color: var(--color-bg);
+  border-bottom: 1px solid var(--color-border);
+}
+.site-nav__inner {
+  width: 100%;
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  display: flex;
+}
+.site-nav__tab {
+  flex: 1;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 0.25rem;
+  font-family: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--color-text-muted);
+  position: relative;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 0.18s ease;
+}
+.site-nav__tab::after {
+  content: "";
+  position: absolute;
+  left: 20%;
+  right: 20%;
+  bottom: -1px;
+  height: 2px;
+  background-color: transparent;
+  transition: background-color 0.18s ease;
+}
+/* 현재 뷰 활성 강조 */
+body[data-view="reader"] .site-nav__tab[data-tab="reader"],
+body[data-view="deck"] .site-nav__tab[data-tab="deck"],
+body[data-view="treatment"] .site-nav__tab[data-tab="treatment"] {
+  color: var(--color-accent);
+}
+body[data-view="reader"] .site-nav__tab[data-tab="reader"]::after,
+body[data-view="deck"] .site-nav__tab[data-tab="deck"]::after,
+body[data-view="treatment"] .site-nav__tab[data-tab="treatment"]::after {
+  background-color: var(--color-accent);
+}
+
+/* ==========================================================================
+   뷰 토글 (라우터가 body[data-view] 설정)
+   ========================================================================== */
+#view-reader,
+#view-treatment {
+  display: none;
+}
+.deck {
+  display: none;
+}
+body[data-view="reader"] #view-reader {
+  display: block;
+}
+body[data-view="treatment"] #view-treatment {
+  display: block;
+}
+body[data-view="deck"] .deck {
+  display: flex;
+}
+/* 기획서(deck)는 풀스크린 캐러셀 — 헤더/본문/푸터 숨기고 화면을 채운다 */
+body[data-view="deck"] .site-header,
+body[data-view="deck"] .site-main,
+body[data-view="deck"] .site-footer {
+  display: none;
+}
+body[data-view="deck"] {
+  overflow: hidden;
+  height: 100vh;
+  height: 100dvh;
+}
+/* 다음 화 FAB·토스트는 시나리오 리더에서만 */
+body:not([data-view="reader"]) .next-fab,
+body:not([data-view="reader"]) .toast {
+  display: none;
+}
+/* 시나리오 탭 임시 안내 토스트는 어느 뷰에서든 노출 (준비 중 안내) */
+body:not([data-view="reader"]) .toast.is-notice {
+  display: block;
+}
+/* 임시 비활성 시나리오 탭 */
+.site-nav__tab[data-tab="reader"][aria-disabled="true"] {
+  cursor: default;
+}
+
+/* ==========================================================================
+   기획서 뷰어 (좌우 페이지 넘김) — 신규 넘김 패턴
+   ========================================================================== */
+.deck {
+  flex: 1;
+  min-height: 0;
+  flex-direction: column;
+}
+.deck__viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+.deck__track {
+  display: flex;
+  height: 100%;
+  will-change: transform;
+}
+.deck__viewport.is-fading {
+  transition: opacity 0.12s ease;
+  opacity: 0.35;
+}
+.deck-page {
+  flex: 0 0 100%;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+.deck-page__inner {
+  width: 100%;
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  padding: 2rem 1.5rem 3rem;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 좌우 화살표 (세로 중앙 고정) */
+.deck__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--color-text);
+  background-color: rgba(26, 26, 26, 0.72);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.18s ease, background-color 0.18s ease;
+}
+.deck__arrow--prev { left: 0.5rem; }
+.deck__arrow--next { right: 0.5rem; }
+.deck__arrow.is-disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* 하단 인디케이터 (도트 + n/7) */
+.deck__nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom, 0px));
+  border-top: 1px solid var(--color-border);
+}
+.deck__dots {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.deck-dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: none;
+  border-radius: 999px;
+  background-color: var(--color-border);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.18s ease, width 0.18s ease;
+}
+.deck-dot.is-active {
+  width: 20px;
+  background-color: var(--color-accent);
+}
+.deck__count {
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted);
+  min-width: 3.2em;
+  text-align: right;
+}
+
+/* 공통 섹션 라벨 */
+.deck-section-label {
+  font-size: 0.8125rem;
+  letter-spacing: 0.14em;
+  color: var(--color-accent);
+  margin-bottom: 1.25rem;
+}
+.deck-hint {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-bottom: 1rem;
+}
+
+/* --- 표지 --- */
+.deck-cover {
+  justify-content: center;
+  text-align: center;
+  gap: 0.25rem;
+}
+.deck-cover .deck-ph {
+  aspect-ratio: 3 / 4;
+  max-height: 46vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+.deck-cover__title {
+  font-size: 2.4rem;
+  letter-spacing: 0.03em;
+  color: var(--color-accent);
+  line-height: 1.2;
+}
+.deck-cover__tag {
+  font-size: 1rem;
+  color: var(--color-text-muted);
+  margin-left: 0.4rem;
+  letter-spacing: 0;
+}
+.deck-cover__genre {
+  margin-top: 0.9rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+.deck-cover__label {
+  margin-top: 1.6rem;
+  font-size: 0.8125rem;
+  letter-spacing: 0.3em;
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  padding: 0.4rem 1.1rem;
+  align-self: center;
+}
+
+/* --- 로그라인 --- */
+.deck-logline {
+  justify-content: center;
+}
+.deck-logline__text {
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
+}
+
+/* --- 작품개요 --- */
+.deck-ov {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.deck-ov__row {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.75rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.deck-ov__row:first-child { border-top: 1px solid var(--color-border); }
+.deck-ov__k {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.06em;
+  padding-top: 0.15rem;
+}
+.deck-ov__v {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text);
+}
+
+/* --- 시놉시스 --- */
+.deck-syn__p {
+  font-size: 0.9375rem;
+  line-height: 1.85;
+  margin-bottom: 1.1rem;
+  color: var(--color-text);
+}
+.deck-syn__heart {
+  margin-top: 0.75rem;
+  padding: 1.1rem 1.25rem;
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-surface);
+  border-radius: 0 0.5rem 0.5rem 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+
+/* --- 캐릭터 바이블 (목록형 카드, 탭 확장) --- */
+.deck-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.deck-card {
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  background-color: var(--color-surface);
+  overflow: hidden;
+}
+.deck-card__head {
+  width: 100%;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: start;
+  gap: 0.85rem;
+  padding: 1rem;
+  background: none;
+  border: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
+  color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+}
+.deck-card__avatar {
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 50%;
+  background-color: var(--color-bg);
+  border: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+.deck-card__meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+.deck-card__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+.deck-card__sub {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--color-text-muted);
+  margin-left: 0.35rem;
+}
+.deck-card__pos {
+  font-size: 0.8125rem;
+  color: var(--color-accent);
+}
+.deck-card__line {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text-muted);
+  margin-top: 0.15rem;
+}
+.deck-card__chev {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  transition: transform 0.2s ease;
+  padding-top: 0.2rem;
+}
+.deck-card.is-open .deck-card__chev {
+  transform: rotate(180deg);
+}
+.deck-card__detail {
+  display: none;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid var(--color-border);
+  margin: 0 1rem;
+  padding-top: 0.9rem;
+}
+.deck-card.is-open .deck-card__detail {
+  display: block;
+}
+.deck-card__item {
+  margin-bottom: 0.8rem;
+}
+.deck-card__item:last-child { margin-bottom: 0; }
+.deck-card__lbl {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-accent);
+  margin-bottom: 0.2rem;
+}
+.deck-card__item p,
+.deck-card__brief {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* --- 플레이스홀더 (감독/제작사/키비주얼) --- */
+.deck-ph {
+  width: 100%;
+}
+.deck-ph--avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1 / 1;
+  max-width: 9rem;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  padding: 0;
+}
+.deck-ph__icon {
+  font-size: 2.4rem;
+  opacity: 0.5;
+}
+
+/* ==========================================================================
+   트리트먼트 뷰 (임시 · 단순 세로 스크롤 마크다운) — 신규
+   ※ 누리 정식 기획 없이 만든 임시 구현. 정식 뷰어 기획은 추후 누리에게 받는다.
+   ========================================================================== */
+.treatment {
+  padding-top: 1rem;
+}
+.treatment__note {
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+.md h1,
+.md h2,
+.md h3,
+.md h4 {
+  line-height: 1.35;
+  margin-top: 2rem;
+  margin-bottom: 0.9rem;
+  color: var(--color-text);
+}
+.md h1 { font-size: 1.5rem; color: var(--color-accent); }
+.md h2 { font-size: 1.25rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.4rem; }
+.md h3 { font-size: 1.08rem; color: var(--color-accent); }
+.md h4 { font-size: 0.98rem; }
+.md h1:first-child,
+.md h2:first-child { margin-top: 0; }
+.md p {
+  font-size: 0.9375rem;
+  line-height: 1.8;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+.md em { color: var(--color-text-muted); font-style: italic; }
+.md strong { color: var(--color-text); font-weight: 700; }
+.md code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.85em;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 0.3rem;
+  padding: 0.05rem 0.35rem;
+}
+.md ul,
+.md ol {
+  margin: 0 0 1rem 1.2rem;
+  padding: 0;
+}
+.md li {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  margin-bottom: 0.4rem;
+}
+.md blockquote {
+  margin: 0 0 1.2rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--color-accent);
+  background-color: var(--color-surface);
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: var(--color-text-muted);
+}
+.md blockquote p { margin-bottom: 0.5rem; color: var(--color-text-muted); }
+.md blockquote p:last-child { margin-bottom: 0; }
+.md hr {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0;
+}
+.md__tablewrap {
+  overflow-x: auto;
+  margin-bottom: 1.4rem;
+  -webkit-overflow-scrolling: touch;
+}
+.md table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 32rem;
+  font-size: 0.85rem;
+}
+.md th,
+.md td {
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  line-height: 1.5;
+  vertical-align: top;
+}
+.md th {
+  background-color: var(--color-surface);
+  color: var(--color-accent);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* --- 태블릿 이상: 넘김 뷰 여백 확대 --- */
+@media (min-width: 640px) {
+  .deck-cover__title { font-size: 3rem; }
+  .deck-logline__text { font-size: 1.75rem; }
+  .deck__arrow--prev { left: 1.25rem; }
+  .deck__arrow--next { right: 1.25rem; }
+}

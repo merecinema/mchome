@@ -4,6 +4,11 @@
 (function () {
   "use strict";
 
+  // 뷰 라우팅 가드(신규): 기획서(deck)·트리트먼트 뷰에서는 시나리오 리더를 기동하지 않는다.
+  // view 파라미터가 없거나 그 외 값이면 기존 동작(?ep=N / 무파라미터 = 시나리오 리더) 그대로.
+  var _view = new URLSearchParams(window.location.search).get("view");
+  if (_view === "deck" || _view === "treatment") return;
+
   var STORAGE_KEY = "kod_reader_progress";
 
   /* -------------------------------------------------------------------
