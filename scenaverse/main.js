@@ -179,7 +179,7 @@
   var reachedEnd = false;
   var observer = null;
 
-  var fab, fabIcon, fabLabel, toastEl, sentinel;
+  var fab, fabIcon, toastEl, sentinel;
   var toastTimer = null;
 
   function totalCount() {
@@ -330,7 +330,6 @@
 
     fab = document.getElementById("nextFab");
     fabIcon = document.getElementById("nextFabIcon");
-    fabLabel = document.getElementById("nextFabLabel");
     toastEl = document.getElementById("toast");
     sentinel = document.getElementById("sentinel");
 
@@ -343,9 +342,6 @@
 
     var entry = resolveEntryEpisode();
     loadEpisode(entry, { replace: true });
-
-    // 개발 확인용
-    window.__KOD = { episodes: episodes, get progress() { return progress; } };
   }
 
   if (document.readyState === "loading") {
