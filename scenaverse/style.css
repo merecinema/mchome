@@ -594,26 +594,61 @@ body:not([data-view="reader"]) .toast.is-notice {
   margin-bottom: 1rem;
 }
 
-/* --- 표지 --- */
-.deck-cover {
-  justify-content: center;
-  text-align: center;
-  gap: 0.25rem;
+/* ==========================================================================
+   풀블리드 사진 페이지 패턴 (표지 · 추후 감독/제작사 소개에도 재사용)
+   화면 폭을 꽉 채운 16:9 이미지 위에 텍스트를 오버레이한다.
+   ========================================================================== */
+.deck-page--photo {
+  max-width: none;      /* 기본 inner 의 42rem 제한 해제 → 풀블리드 */
+  padding: 0;
+  justify-content: center; /* 16:9 프레임을 슬라이드 세로 중앙에 */
 }
-.deck-cover .deck-ph {
-  aspect-ratio: 3 / 4;
-  max-height: 46vh;
+.deck-photo {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;  /* 화면 크기와 무관하게 16:9 유지 */
+  overflow: hidden;
+}
+.deck-photo__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;     /* 비율 어긋나면 채우고 잘라냄 */
+  object-position: center;
+}
+/* 하단→위로 어두워지는 그라디언트 (텍스트 가독성) */
+.deck-photo__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.45) 30%,
+    rgba(0, 0, 0, 0) 62%
+  );
+  pointer-events: none;
+}
+.deck-photo__overlay {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 1.5rem 1.5rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 2rem;
+  align-items: stretch; /* 자식(제목·장르)이 폭을 채워 정상 줄바꿈 */
+  text-align: left;
 }
+.deck-photo__overlay > * {
+  max-width: var(--reader-max-width); /* 넓은 화면에서 텍스트 줄길이 제한 */
+}
+
+/* --- 표지 타이포 (오버레이 위) --- */
 .deck-cover__title {
-  font-size: 2.4rem;
+  font-size: 2.2rem;
   letter-spacing: 0.03em;
-  color: var(--color-accent);
-  line-height: 1.2;
+  color: var(--color-text);
+  line-height: 1.15;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
 }
 .deck-cover__tag {
   font-size: 1rem;
@@ -622,20 +657,21 @@ body:not([data-view="reader"]) .toast.is-notice {
   letter-spacing: 0;
 }
 .deck-cover__genre {
-  margin-top: 0.9rem;
-  font-size: 0.9375rem;
+  margin-top: 0.7rem;
+  font-size: 0.875rem;
   color: var(--color-text-muted);
   line-height: 1.6;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.7);
 }
 .deck-cover__label {
-  margin-top: 1.6rem;
+  margin-top: 1.1rem;
   font-size: 0.8125rem;
   letter-spacing: 0.3em;
   color: var(--color-text);
-  border: 1px solid var(--color-border);
+  border: 1px solid rgba(255, 255, 255, 0.5);
   border-radius: 999px;
-  padding: 0.4rem 1.1rem;
-  align-self: center;
+  padding: 0.35rem 1rem;
+  align-self: flex-start;
 }
 
 /* --- 로그라인 --- */

@@ -84,13 +84,20 @@
     );
   }
 
+  // 재사용 패턴: 풀블리드 16:9 이미지 + 하단 그라디언트 위 텍스트 오버레이
+  // (추후 감독소개/제작사소개 페이지에도 src·내용만 바꿔 동일 클래스 적용 예정)
   function pageCover() {
     return (
-      '<div class="deck-page__inner deck-cover">' +
-      placeholderBox("키 비주얼 준비 중", "표지 이미지는 추후 업데이트 예정입니다.") +
+      '<div class="deck-page__inner deck-page--photo deck-cover">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/cover.jpg" alt="욕망의 칼 키 비주얼" />' +
+      '<div class="deck-photo__scrim"></div>' +
+      '<div class="deck-photo__overlay">' +
       '<h1 class="deck-cover__title">욕망의 칼<span class="deck-cover__tag">(가제)</span></h1>' +
       '<p class="deck-cover__genre">숏폼 드라마 70부작 · 현대 조직범죄 상속 누아르 복수극 + 멜로 비극</p>' +
       '<p class="deck-cover__label">기획서</p>' +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
