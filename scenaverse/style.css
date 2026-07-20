@@ -587,6 +587,7 @@ body:not([data-view="reader"]) .toast.is-notice {
   letter-spacing: 0.14em;
   color: var(--color-accent);
   margin-bottom: 1.25rem;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8); /* 이미지 위 오버레이 가독성 */
 }
 .deck-hint {
   font-size: 0.85rem;
@@ -641,6 +642,110 @@ body:not([data-view="reader"]) .toast.is-notice {
 .deck-photo__overlay > * {
   max-width: var(--reader-max-width); /* 넓은 화면에서 텍스트 줄길이 제한 */
 }
+/* 배경 영상(제작사소개) — img 와 동일 프레이밍 */
+.deck-photo__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ==========================================================================
+   통합 풀스크린 오버레이 패턴 (표지 외 전 페이지 공통)
+   이미지/영상이 16:9 프레임을 꽉 채우고, 텍스트는 그 위 오버레이에서
+   내부 스크롤한다(배경은 고정 — 스크롤해도 사라지지 않음).
+   ========================================================================== */
+.deck-photo__overlay--fill {
+  top: 0;                     /* left/right/bottom 은 base 에서 0 → inset:0 완성 */
+  padding: 1.75rem 1.5rem;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  justify-content: flex-start;
+}
+.deck-photo__overlay--fill > * {
+  width: 100%;
+  margin-inline: auto;        /* 넓은 화면에서 중앙 정렬(폭은 reader-max-width 제한) */
+}
+/* 상·하 어둡게 하는 풀 스크림 (오버레이 텍스트 가독성 베이스) */
+.deck-photo__scrim--fill {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.72) 0%,
+    rgba(0, 0, 0, 0.4) 42%,
+    rgba(0, 0, 0, 0.62) 100%
+  );
+}
+/* 본문 가독성 패널 (텍스트 많은 페이지: 작품개요·시놉시스·캐릭터·감독소개·제작사) */
+.deck-panel {
+  background: rgba(0, 0, 0, 0.55);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 1.25rem 1.25rem 1.5rem;
+}
+
+/* --- 감독소개 --- */
+.deck-dir__name {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: 0.02em;
+}
+.deck-dir__edu {
+  margin-top: 0.4rem;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+.deck-dir__subhead {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--color-accent);
+  letter-spacing: 0.02em;
+}
+.deck-dir__films {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.deck-dir__film {
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--color-text);
+  padding: 0.4rem 0;
+  border-bottom: 1px solid var(--color-border);
+}
+.deck-dir__note {
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--color-text-muted);
+  padding: 0.25rem 0 0.4rem;
+  border-bottom: 1px solid var(--color-border);
+}
+.deck-dir__ad {
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: var(--color-text);
+}
+
+/* --- 제작사소개 --- */
+.deck-co__p {
+  font-size: 0.9375rem;
+  line-height: 1.75;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.deck-co__p:last-of-type { margin-bottom: 0; }
+.deck-company__more {
+  display: inline-block;
+  margin-top: 1.25rem;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 /* --- 표지 타이포 (오버레이 위) --- */
 .deck-cover__title {
@@ -674,19 +779,113 @@ body:not([data-view="reader"]) .toast.is-notice {
   align-self: flex-start;
 }
 
-/* --- 로그라인 --- */
+/* --- 로그라인 (표지의 역상: 상단 조판 + 하단 풀블리드 16:9 이미지) --- */
 .deck-logline {
-  justify-content: center;
+  max-width: none;      /* 풀블리드로 전환 */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  justify-content: space-between;
+}
+.deck-logline__lead {
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  width: 100%;
+  padding: 2.5rem 1.5rem 1.5rem;
+  text-align: left;
 }
 .deck-logline__text {
-  font-size: 1.45rem;
+  font-size: 1.55rem;
   font-weight: 700;
   line-height: 1.6;
   letter-spacing: -0.01em;
-  color: var(--color-text);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85); /* 패널 없이 이미지 위 직접 오버레이 */
+}
+.deck-logline__setup {
+  color: #ededed;
+}
+.deck-logline__dash {
+  color: var(--color-accent);
+  margin-right: 0.25em;
+}
+.deck-logline__q {
+  color: #ffffff;
+}
+/* 하단 이미지 밴드 — 항상 16:9 고정 프레임 */
+.deck-logline__figure {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.deck-logline__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 62% 50%;
+}
+/* 상단 페더(표지와 반대 방향) + 하단 살짝 */
+.deck-logline__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+      to bottom,
+      #000 0%,
+      rgba(0, 0, 0, 0.6) 12%,
+      rgba(0, 0, 0, 0) 34%
+    ),
+    linear-gradient(to top, rgba(0, 0, 0, 0.35) 0%, transparent 22%);
+  pointer-events: none;
 }
 
-/* --- 작품개요 --- */
+/* --- 작품개요 (텍스트 우세 + 상단 시네마스코프 무드 밴드) --- */
+.deck-overview {
+  max-width: none;      /* 풀블리드 전환 */
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.deck-ov__lead {
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  width: 100%;
+  padding: 2rem 1.5rem 1rem;
+}
+/* 시네마스코프 밴드: 모바일은 네이티브 무크롭, 640+ 는 46vh 클램프 */
+.deck-ov__strip {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 854 / 320;
+  overflow: hidden;
+}
+.deck-ov__media {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 38%;  /* 얼굴이 상단 1/3 → 세로 크롭 시 보존 */
+}
+/* 하단 디졸브(경계 용해 전용, 텍스트 없음) */
+.deck-ov__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.35) 0%,
+    rgba(0, 0, 0, 0) 22%,
+    rgba(0, 0, 0, 0) 60%,
+    rgba(0, 0, 0, 0.85) 92%,
+    #000 100%
+  );
+  pointer-events: none;
+}
+.deck-ov__list {
+  max-width: var(--reader-max-width);
+  margin-inline: auto;
+  width: 100%;
+  padding: 1.25rem 1.5rem 3rem;  /* 밴드~목록 간격 1.25rem */
+}
 .deck-ov {
   display: flex;
   flex-direction: column;
@@ -711,6 +910,12 @@ body:not([data-view="reader"]) .toast.is-notice {
   font-size: 0.9375rem;
   line-height: 1.65;
   color: var(--color-text);
+}
+
+/* 시놉시스·캐릭터바이블 상단 무드컷 (기존 .deck-photo 패턴 재사용 + 하단 여백만) */
+.deck-syn__photo,
+.deck-chars__photo {
+  margin-bottom: 1.5rem;
 }
 
 /* --- 시놉시스 --- */
@@ -957,7 +1162,8 @@ body:not([data-view="reader"]) .toast.is-notice {
 /* --- 태블릿 이상: 넘김 뷰 여백 확대 --- */
 @media (min-width: 640px) {
   .deck-cover__title { font-size: 3rem; }
-  .deck-logline__text { font-size: 1.75rem; }
+  .deck-logline__text { font-size: 2rem; line-height: 1.6; }
+  .deck-ov__strip { max-height: 46vh; }
   .deck__arrow--prev { left: 1.25rem; }
   .deck__arrow--next { right: 1.25rem; }
 }

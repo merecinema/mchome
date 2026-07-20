@@ -104,9 +104,19 @@
 
   function pageLogline() {
     return (
-      '<div class="deck-page__inner deck-logline">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/logline.jpg" alt="로그라인 키 비주얼" />' +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">로그라인</p>' +
-      '<p class="deck-logline__text">물려받은 피와 물려받은 원한 사이에서, 사랑하는 여자를 무기로 써야만 빼앗긴 것을 되찾을 수 있을 때 — 그는 남이 써준 운명을 완성하는가, 자기를 잃는가, 아니면 처음으로 자기 뿌리를 스스로 선택하는가.</p>' +
+      '<p class="deck-logline__text">' +
+      '<span class="deck-logline__setup">부모를 도륙한 원수의 딸과 사랑에 빠진 남자. 그의 손에 단검이 쥐어진다.</span>' +
+      "<br />" +
+      '<span class="deck-logline__q">복수와 사랑의 욕망 사이에서 그는 무엇을 베어낼 것인가!</span>' +
+      "</p>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -128,9 +138,17 @@
       );
     }).join("");
     return (
-      '<div class="deck-page__inner">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/overview-poster.jpg" alt="작품개요 무드컷" />' +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">작품개요</p>' +
+      '<div class="deck-panel">' +
       '<dl class="deck-ov">' + grid + "</dl>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -140,10 +158,18 @@
       return '<p class="deck-syn__p">' + esc(p) + "</p>";
     }).join("");
     return (
-      '<div class="deck-page__inner">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/synopsis.jpg" alt="시놉시스 키 비주얼" />' +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">시놉시스</p>' +
+      '<div class="deck-panel">' +
       paras +
       '<blockquote class="deck-syn__heart">' + esc(HEART) + "</blockquote>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
@@ -178,30 +204,91 @@
       );
     }).join("");
     return (
-      '<div class="deck-page__inner">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/characters.jpg" alt="캐릭터 바이블 키 비주얼" />' +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">캐릭터 바이블</p>' +
+      '<div class="deck-panel">' +
       '<p class="deck-hint">카드를 탭하면 상세가 열립니다.</p>' +
       '<div class="deck-cards">' + cards + "</div>" +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
 
+  var FILMS = [
+    "<전업주부 양과장> 기획/각색/감독, 2026, 제작중 | 한국",
+    "<사랑의 고고학> 제작, 2022 | 한국/프랑스",
+    "*제46회 예테보리국제영화제-잉마르 베리만 경쟁부문 등",
+    "<Return to Seoul 리턴 투 서울> 공동제작, 2021 | 프랑스/한국/독일/벨기에/캄보디아",
+    "*제75회 칸국제영화제-주목할 만한 시선, 2023 아카데미 어워즈 '국제영화상부문' 예비후보 등",
+    "<Vanishing 배니싱: 미제사건> 총괄프로듀서, 2020 | 프랑스",
+    "<#iamhere #아이엠히어> 한국총괄프로듀서, 2018-2019 | 프랑스",
+    "<Cites of Last Things 행복도시> 한국총괄프로듀서, 2017 | 대만/중국/프랑스",
+    "<T.A.N.K.2 탱크2> 한국총괄프로듀서, 2017 | 프랑스",
+    "<천화(遷化)> 제작/각색/프로듀서, 2016 | 한국/프랑스",
+    "<Trait Pour Trait 부자초상(父子肖像)> 각본/감독, 2011 | 한국/프랑스, 중편다큐멘터리",
+    "<가을노경> 각본/감독, 2002 | 제7회 대한민국디지털촬영대회 우수상",
+    "<공간> 각본/감독, 2002 | 제6회 대한민국종교영화제 단편경쟁부문 최우수상(문화부장관상)",
+    "*상기년도는 제작년도임."
+  ];
+
+  var COMPANY = [
+    "MereCinema has been making good films across the continents as an inner vital movement since 2014.",
+    "MereCinema is going through with integrity, excellence, and love in all filmmaking.",
+    "MereCinema continually tries to understand the essence of the cinematographic image and the top new technology trends, such as blockchain and AI, to make a valuable film.",
+    "MereCinema hopes to share with our spectators and partners the sublime value of our life through cinematic images dressed with the various affections of human beings."
+  ];
+
   function pageDirector() {
+    var films = FILMS.map(function (l) {
+      var note = l.charAt(0) === "*";
+      return '<li class="' + (note ? "deck-dir__note" : "deck-dir__film") + '">' + esc(l) + "</li>";
+    }).join("");
     return (
-      '<div class="deck-page__inner">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<img class="deck-photo__img" src="scenaverse/images/director.jpg" alt="감독 키 비주얼" />' +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">감독소개</p>' +
-      '<div class="placeholder deck-ph deck-ph--avatar"><span class="deck-ph__icon" aria-hidden="true">👤</span></div>' +
-      placeholderBox("추후 업데이트 예정", "감독 성함·약력·사진은 아직 준비되지 않았습니다.") +
+      '<div class="deck-panel">' +
+      '<p class="deck-dir__name">로고스</p>' +
+      '<p class="deck-dir__edu">파리 8대학 영화과 연출전공 졸업(학사/석사/박사과정수료)</p>' +
+      '<h3 class="deck-dir__subhead">주요 필모그래피 Filmography</h3>' +
+      '<ul class="deck-dir__films">' + films + "</ul>" +
+      '<h3 class="deck-dir__subhead">광고 Commercials</h3>' +
+      '<p class="deck-dir__ad">Hermès, Chanel, Dior, Yves Saint Laurent, Ralph Lauren, Boucheron, Kérastase, SK-II, Poiret, Land Rover, Hyundai/Kia, Samsung, Nike 등 글로벌 브랜드 캠페인 다수 총괄프로듀서</p>' +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
 
   function pageCompany() {
+    var paras = COMPANY.map(function (p) {
+      return '<p class="deck-co__p">' + esc(p) + "</p>";
+    }).join("");
     return (
-      '<div class="deck-page__inner">' +
+      '<div class="deck-page__inner deck-page--photo">' +
+      '<div class="deck-photo">' +
+      '<video class="deck-photo__video" autoplay loop muted playsinline webkit-playsinline preload="auto">' +
+      '<source src="videos/Nature_Water_2K.mp4" type="video/mp4" />' +
+      "</video>" +
+      '<div class="deck-photo__scrim deck-photo__scrim--fill"></div>' +
+      '<div class="deck-photo__overlay deck-photo__overlay--fill">' +
       '<p class="deck-section-label">제작사소개</p>' +
-      '<div class="placeholder deck-ph deck-ph--avatar"><span class="deck-ph__icon" aria-hidden="true">🏢</span></div>' +
-      placeholderBox("추후 업데이트 예정", "제작사 로고·소개는 아직 준비되지 않았습니다.") +
+      '<div class="deck-panel">' +
+      paras +
+      '<a class="deck-cover__label deck-company__more" href="https://www.merecinema.net" target="_blank" rel="noopener noreferrer">See more</a>' +
+      "</div>" +
+      "</div>" +
+      "</div>" +
       "</div>"
     );
   }
