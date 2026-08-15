@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="욕망의 칼 (가제) — 웹 리더">
+  <meta name="robots" content="noindex, nofollow">
   <title>욕망의 칼 (가제)</title>
   <link rel="icon" type="image/svg+xml" href="scenaverse/favicon.svg">
   <link rel="stylesheet" href="scenaverse/style.css">
@@ -13,7 +14,7 @@
   <div class="gate" id="gate" role="dialog" aria-modal="true" aria-labelledby="gateTitle">
     <form class="gate__box" id="gateForm" autocomplete="off">
       <h1 class="gate__title" id="gateTitle">욕망의 칼</h1>
-      <p class="gate__desc">비밀번호를 입력해 주세요.</p>
+      <p class="gate__desc">기획서·트리트먼트는 비밀번호가 필요합니다.</p>
       <input
         class="gate__input"
         id="gateInput"
@@ -35,13 +36,13 @@
     <div class="site-nav__inner">
       <a class="site-nav__tab" data-tab="deck" href="?view=deck">기획서</a>
       <a class="site-nav__tab" data-tab="treatment" href="?view=treatment">트리트먼트</a>
-      <a class="site-nav__tab" data-tab="reader" href="scenaverse.html">시나리오</a>
+      <a class="site-nav__tab" data-tab="reader" href="?view=reader&ep=1">시나리오</a>
     </div>
   </nav>
 
   <header class="site-header">
     <h1 class="site-title">욕망의 칼</h1>
-    <p class="site-subtitle">각본 · 감독 Logos HA</p>
+    <p class="site-subtitle">각본 · 감독 로고스</p>
   </header>
 
   <main class="site-main">
@@ -104,10 +105,13 @@
         }, 300);
       }
 
+      // 시나리오 리더(?view=reader)는 게이트 없이 공개 — 기획서·트리트먼트만 비밀번호 필요
+      var isReaderView = new URLSearchParams(window.location.search).get("view") === "reader";
+
       var already = false;
       try { already = sessionStorage.getItem(GATE_KEY) === "1"; } catch (e) {}
 
-      if (already) {
+      if (isReaderView || already) {
         gate.classList.add("is-hidden");
         if (gate && gate.parentNode) gate.parentNode.removeChild(gate);
       } else {
@@ -132,29 +136,9 @@
   <script>
     (function () {
       var v = new URLSearchParams(window.location.search).get("view");
-      // 기본 진입 뷰: 기획서(deck). 시나리오 리더는 준비 중이라 첫 화면에서 제외.
+      // 기본 진입 뷰: 기획서(deck). 시나리오 리더는 탭 클릭(?view=reader)으로만 진입.
       if (v !== "treatment" && v !== "reader") v = "deck";
       document.body.setAttribute("data-view", v);
-    })();
-  </script>
-
-  <!-- 시나리오 탭 임시 비활성 (준비 중 — Coming soon 안내만 노출) -->
-  <script>
-    (function () {
-      var tab = document.querySelector('.site-nav__tab[data-tab="reader"]');
-      var toast = document.getElementById("toast");
-      if (!tab || !toast) return;
-      var timer = null;
-      tab.setAttribute("aria-disabled", "true");
-      tab.addEventListener("click", function (e) {
-        e.preventDefault();
-        toast.textContent = "시나리오 뷰어는 준비 중입니다. Coming soon";
-        toast.classList.add("is-notice", "is-visible");
-        if (timer) clearTimeout(timer);
-        timer = setTimeout(function () {
-          toast.classList.remove("is-visible", "is-notice");
-        }, 2200);
-      });
     })();
   </script>
 

@@ -466,15 +466,6 @@ body:not([data-view="reader"]) .next-fab,
 body:not([data-view="reader"]) .toast {
   display: none;
 }
-/* 시나리오 탭 임시 안내 토스트는 어느 뷰에서든 노출 (준비 중 안내) */
-body:not([data-view="reader"]) .toast.is-notice {
-  display: block;
-}
-/* 임시 비활성 시나리오 탭 */
-.site-nav__tab[data-tab="reader"][aria-disabled="true"] {
-  cursor: default;
-}
-
 /* ==========================================================================
    기획서 뷰어 (좌우 페이지 넘김) — 신규 넘김 패턴
    ========================================================================== */
