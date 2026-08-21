@@ -75,15 +75,6 @@
     return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
-  function placeholderBox(lead, desc) {
-    return (
-      '<div class="placeholder deck-ph">' +
-      '<p class="placeholder__lead">' + esc(lead) + "</p>" +
-      '<p class="placeholder__desc">' + esc(desc) + "</p>" +
-      "</div>"
-    );
-  }
-
   // 재사용 패턴: 풀블리드 16:9 이미지 + 하단 그라디언트 위 텍스트 오버레이
   // (추후 감독소개/제작사소개 페이지에도 src·내용만 바꿔 동일 클래스 적용 예정)
   function pageCover() {

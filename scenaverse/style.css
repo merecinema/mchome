@@ -89,24 +89,6 @@ body {
   padding-bottom: 2.5rem;
 }
 
-.placeholder {
-  background-color: var(--color-surface);
-  border: 1px solid var(--color-border);
-  border-radius: 0.75rem;
-  padding: 2rem 1.5rem;
-  text-align: center;
-}
-
-.placeholder__lead {
-  font-weight: 600;
-  margin-bottom: 0.5rem;
-}
-
-.placeholder__desc {
-  font-size: 0.9375rem;
-  color: var(--color-text-muted);
-}
-
 /* --- 푸터 --- */
 .site-footer {
   padding-top: 1.5rem;
@@ -1030,25 +1012,6 @@ body:not([data-view="reader"]) .toast {
   font-size: 0.9rem;
   line-height: 1.7;
   color: var(--color-text);
-}
-
-/* --- 플레이스홀더 (감독/제작사/키비주얼) --- */
-.deck-ph {
-  width: 100%;
-}
-.deck-ph--avatar {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  aspect-ratio: 1 / 1;
-  max-width: 9rem;
-  margin: 0 auto 1.25rem;
-  border-radius: 50%;
-  padding: 0;
-}
-.deck-ph__icon {
-  font-size: 2.4rem;
-  opacity: 0.5;
 }
 
 /* ==========================================================================
