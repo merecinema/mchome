@@ -190,7 +190,8 @@ nav.scrolled {
 }
 
 .video-background iframe,
-.video-background video {
+.video-background video,
+.video-background img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -204,14 +205,16 @@ nav.scrolled {
 /* Ensure video covers the entire section */
 @media (min-aspect-ratio: 16/9) {
     .video-background iframe,
-    .video-background video {
+    .video-background video,
+    .video-background img {
         height: 56.25vw;
     }
 }
 
 @media (max-aspect-ratio: 16/9) {
     .video-background iframe,
-    .video-background video {
+    .video-background video,
+    .video-background img {
         width: 177.78vh;
     }
 }
